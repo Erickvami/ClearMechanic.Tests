@@ -21,7 +21,7 @@ namespace ClearMechanic.Tests
         }
 
         [Fact]
-        public async Task Get_ReturnsOkResult_WithAListOfMovies()
+        public async Task GetReturnsOkResultWithAListOfMovies()
         {
             var movies = new List<Movie> { new Movie { Id = 1, Title = "Movie 1" }, new Movie { Id = 2, Title = "Movie 2" } };
             _movieServiceMock.Setup(service => service.GetAll()).ReturnsAsync(movies);
@@ -36,7 +36,7 @@ namespace ClearMechanic.Tests
         [Theory]
         [InlineData(null, "")]
         [InlineData("Action,Drama", "Avengers")]
-        public async Task Search_ReturnsOkResult_WithFilteredMovies(string genres, string query)
+        public async Task SearchReturnsOkResultWithFilteredMovies(string genres, string query)
         {
             var movies = new List<Movie> { new Movie { Id = 1, Title = "Avengers" } };
             _movieServiceMock.Setup(service => service.SearchMovies(It.IsAny<string>(), It.IsAny<string[]>())).ReturnsAsync(movies);
@@ -49,7 +49,7 @@ namespace ClearMechanic.Tests
         }
 
         [Fact]
-        public async Task GetById_ReturnsOkResult_WithMovie()
+        public async Task GetByIdReturnsOkResultWithMovie()
         {
             var movie = new Movie { Id = 1, Title = "Movie 1" };
             _movieServiceMock.Setup(service => service.GetById(1, It.IsAny<bool?>(), It.IsAny<bool?>())).ReturnsAsync(movie);
@@ -62,7 +62,7 @@ namespace ClearMechanic.Tests
         }
 
         [Fact]
-        public async Task GetById_ReturnsNotFound_WhenMovieNotFound()
+        public async Task GetByIdReturnsNotFoundWhenMovieNotFound()
         {
             _movieServiceMock.Setup(service => service.GetById(1, It.IsAny<bool?>(), It.IsAny<bool?>())).ReturnsAsync((Movie)null);
 
@@ -72,7 +72,7 @@ namespace ClearMechanic.Tests
         }
 
         [Fact]
-        public async Task Post_ReturnsCreatedAtAction_WithNewMovie()
+        public async Task PostReturnsCreatedAtActionWithNewMovie()
         {
             var movie = new Movie { Id = 1, Title = "New Movie" };
             _movieServiceMock.Setup(service => service.CreateMovieAsync(It.IsAny<Movie>())).ReturnsAsync(movie);
@@ -85,7 +85,7 @@ namespace ClearMechanic.Tests
         }
 
         [Fact]
-        public async Task Delete_ReturnsOk_WhenMovieIsDeleted()
+        public async Task DeleteReturnsOkWhenMovieIsDeleted()
         {
             var result = await _controller.Delete(1);
 
@@ -94,7 +94,7 @@ namespace ClearMechanic.Tests
         }
 
         [Fact]
-        public async Task Post_ThrowsException_WhenActorIdsAreInvalid()
+        public async Task PostThrowsExceptionWhenActorIdsAreInvalid()
         {
             var movie = new Movie
             {
@@ -115,7 +115,7 @@ namespace ClearMechanic.Tests
         }
 
         [Fact]
-        public async Task Post_ThrowsException_WhenMovieDataIsInvalid()
+        public async Task PostThrowsExceptionWhenMovieDataIsInvalid()
         {
             var movie = new Movie
             {

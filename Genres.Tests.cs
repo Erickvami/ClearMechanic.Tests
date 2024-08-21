@@ -21,7 +21,7 @@ namespace ClearMechanic.Tests
         }
 
          [Fact]
-        public async Task Get_ReturnsOkResult_WithAListOfGenres()
+        public async Task GetReturnsOkResultWithAListOfGenres()
         {
             var genres = new List<Genre> { new Genre { Id = 1, Name = "Action" }, new Genre { Id = 2, Name = "Drama" } };
             _genreServiceMock.Setup(service => service.GetAll()).ReturnsAsync(genres);
